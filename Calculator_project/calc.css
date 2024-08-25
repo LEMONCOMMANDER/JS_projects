@@ -1,0 +1,244 @@
+/* ----------------------------------------------------------- ENTIRE PAGE BORDER*/
+.all {
+    display: flex;
+    height: calc(100vh - 30px);
+    width: calc(100vw - 35px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid 3px black;
+    min-height: min-content;
+    min-width: min-content;
+}
+
+.lvl2 {
+    display: grid;
+    border: none;
+    grid-template-columns: 6fr 2fr;
+    height: 100%;
+    width: 100%;
+    align-content: center;
+
+
+}
+
+.result_display {
+    display: flex;
+    border: rgb(1, 170, 1) 2px solid;
+    background-color: #85ff43;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+
+/* ----------------------------------------------------------- CALC OUTSIDE DIMENSIONS*/
+.calc {
+    border: solid 5px rgb(0, 0, 0);
+    width: calc(20vw - 35px);
+    height: min-content;
+    border-radius: 5px;
+    background-color: rgb(70, 70, 70);
+    min-width: 160px;
+    min-height: 250px;
+
+}
+
+/* ----------------------------------------------------------- DISPLAY */
+.display1 {
+    box-sizing: border-box;
+    border: solid black;
+    background-color: black;
+    border-radius: 1px;
+}
+
+.display2 {
+    border: solid;
+    border-radius: 15px;
+    border-color: #43fffc;
+    background-color: #ffffffbc;
+    height: 4rem;
+}
+
+.display-screen {
+    width: calc(20vw - 35px);
+    text-align: center;
+    font-size: 400%;
+    height: auto;
+    padding: 0px;
+    margin: 0rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.z {
+    text-align: center;
+    margin: 0rem;
+    padding: 0rem;
+}
+
+
+/* ----------------------------------------------------------- TOP INPUTS*/
+
+.top {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: auto;
+    height: 3rem;
+    border-top: solid 3px #43fffc;
+    background-color: #000000;
+}
+
+.numberbox {
+    /*THIS IS THE DIV CONTAINING THE NUMBERBOX*/
+    display: flex;
+    border: solid 3px #43fffc;
+    width: 35%;
+    height: 85%;
+    background-color: #a2abab;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.op_box {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 50%;
+    background-color: white;
+    border: solid 3px #43fffc;
+}
+
+.box {
+    /*THIS IS THE NUMBER BOXES*/
+    width: 100%;
+    height: auto;
+}
+
+/* ----------------------------------------------------------- CALC BODY*/
+.body {
+
+    border: solid 3px rgba(0, 128, 0, 0);
+    width: auto;
+    height: auto;
+}
+
+.buttons {
+    /*THIS DIV HOUSES EACH ROW OF BUTTONS*/
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid 3px #000000;
+    height: 2.8rem;
+    border-radius: 10px;
+    width: auto;
+}
+
+.transport {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid 3px #000000;
+    height: 2.8rem;
+    /*background-color: white;*/
+    border-radius: 10px;
+    width: auto;
+}
+
+.selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px #43fffc;
+    border-radius: 10px;
+    width: auto;
+}
+
+.index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px #43fffc;
+    background-color: #bdbdbd;
+    width: 15%;
+    height: 35%;
+}
+
+.index_display {
+    text-align: center;
+    margin: 0rem;
+    padding: 0rem;
+    font-size: 90%;
+}
+
+.indicator {
+    border: black 1px solid;
+    border-radius: 100%;
+    background-color: #a2abab;
+    height: 20%;
+    width: 5%;
+}
+
+.mb {
+    /*THE BUTTONS THEMSELVES*/
+    border-radius: 100%;
+    border: solid 2px #43fffc;
+    height: 85%;
+    width: 15%;
+}
+
+.mb2 {
+    border: solid 2px #43fffc;
+    height: 85%;
+    width: 25%;
+}
+
+
+
+.mb3 {
+    border: solid 2px #43fffc;
+    border-radius: 5px;
+    height: 45%;
+    width: 85%;
+    font-size: 60%;
+}
+
+.mb4 {
+    border: solid 2px #43fffc;
+    border-radius: 5px;
+    height: 45%;
+    width: 85%;
+    font-size: 60%;
+}
+
+.show_button {
+    border: solid 2px black;
+    border-radius: 5px;
+    background-color: #a2abab;
+    margin-top: 1rem;
+}
+
+.mb:active {
+    transform: translateY(2px)
+}
+
+.mb2:active {
+    transform: translateY(2px)
+}
+
+.mb3:active {
+    transform: translateY(2px)
+}
+
+.mb4:active {
+    transform: translateY(2px)
+}
+
+.show_button:active {
+    transform: translateY(2px)
+}

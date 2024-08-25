@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./calc.css">
+
+
+</head>
+
+<body style="background-color: #414141;">
+    <div class="all">
+        <div style="height:500px; width:700px">
+            <div class="lvl2">
+                <div
+                    style="width:100%; display:flex; justify-content:center; align-items:center; flex-direction: column;">
+                    <div class="calc">
+                        <div class="display1">
+                            <!-- just for stylization, not functionality -->
+                            <!-- <div class="display2" style="border: solid rgb(182, 251, 255); background-color:#c0fffe00"></div> -->
+                            <div class="display2">
+                                <!-- the display screen object -->
+                                <p id="display_screen" class="display-screen"> -- </p>
+                            </div>
+                            <div>
+                                <div class="display2" style="height:1rem; width:20%;">
+                                    <p id="z_display" class="z">Z</p>
+                                </div>
+                                <!--not inline for some reason.
+                            <span style="color: white;"> = z</span>-->
+                            </div>
+                        </div>
+                        <div class="top">
+                            <div class="numberbox" id="n1b">
+                                <!-- <input id="num1" class="box" type="text" placeholder="number 1"> -->
+                                <p id="num1">--</p>
+                            </div>
+                            <div class="op_box" id="op_box">
+                                <p id="op_display">--</p>
+                            </div>
+                            <div class="numberbox" id="n2b">
+                                <!-- <input id="num2" class="box" type="text" placeholder="number 2"> -->
+                                <p id="num2">--</p>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="buttons">
+                                <button class="mb" id="plus">+</button>
+                                <button class="mb" id="minus">-</button>
+                                <button class="mb" id="mult">x</button>
+                                <button class="mb" id="divide">/</button>
+                                <div style="border: solid 2px black; background-color:black; height:100%; width:.1rem;">
+                                </div>
+                                <button class="mb" id="equal">=</button>
+                            </div>
+                            <div class="buttons">
+                                <button class="mb" id="1">1</button>
+                                <button class="mb" id="2">2</button>
+                                <button class="mb" id="3">3</button>
+                                <button class="mb" id="4">4</button>
+                                <button class="mb" id="5">5</button>
+                                <button class="mb" id="6">6</button>
+                            </div>
+                            <div class="buttons">
+                                <button class="mb" id="7">7</button>
+                                <button class="mb" id="8">8</button>
+                                <button class="mb" id="9">9</button>
+                                <button class="mb" id="0">0</button>
+                                <button class="mb" id="z">z</button>
+                                <button class="mb" id="decimal" style="font-size:larger">.</button>
+                            </div>
+                            <div class="transport">
+                                <div class="buttons" style="width: 60%; border-color:rgba(240, 248, 255, 0); 
+                                    border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                                    <div class="indicator" id="LI"></div>
+                                    <button class="mb2" id="L">L</button>
+                                    <div class="index">
+                                        <p id="index_display" class="index_display">0</p>
+                                    </div>
+                                    <button class="mb2" id="R">R</button>
+                                    <div class="indicator" id="RI"></div>
+                                </div>
+                                <!---->
+                                <div style="border: solid 2px black; background-color:black; height:100%; width:.1rem;">
+                                </div>
+                                <!---->
+                                <div class="buttons" style="width: 40%; flex-direction: column; border-color:rgba(240, 248, 255, 0); 
+                                    border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
+                                    <button class="mb3" id="bcksp">backspace</button>
+                                    <button class="mb3" id="clr">clear</button>
+                                </div>
+                            </div>
+                            <div class="selector">
+                                <button class="mb4" id="selector">Selector</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button id="show_button" class="show_button"><span style="color: #84ebe8;">Show
+                                Results</span></button>
+                    </div>
+                </div>
+                <div class="result_display" style="background-color: #85ff43;">
+                    <p id="testP" style="font-size: 2rem; color:#000000"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="./calc_script.js"></script>
+
+
+</html>
