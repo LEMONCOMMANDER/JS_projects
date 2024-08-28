@@ -28,7 +28,8 @@
     background-color: #85ff43;
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow: auto;
+
 }
 
 /* ----------------------------------------------------------- CALC OUTSIDE DIMENSIONS*/

@@ -1,0 +1,51 @@
+notes.txt
+
+GIT
+** do not use the term database
+
+Git keeps track of ANY FILE through version control.
+
+COMMANDS -- 
+
+git status - gives details about the current repo and branch
+    any changes / differences from the working directory to the last commit
+
+git pull - pulls all of the code from the remote "origin"
+    origin is the source of truth for the code. Anywhere that isn't you personal machine
+
+(can also use git merge - but pull includes a merge automatically)
+
+git branch - lists all branches you've pulled onto your machine 
+
+git checkout <branch name> - checks out the specified branch 
+    replaces your current version after saves - will update everything else
+    think "checkout" like library 
+
+git checkout -b <branch name> - this flag creates a new branch 
+
+git add -A - adds all untracked files to be tracked by git -
+    starts and stops tracking new and removed files 
+
+    git doesn't track anything by default - you have to specify what to track. 
+    It will keep tracking everything until specified otherwise.
+    This is why we use -A - this method will automatically stop tracking deleted files
+    ** anytime you add or delete files, run this call
+
+git commit -am 'message' - commit the changes /  create a change record and (a)dd a (m)essage to changes
+    -m is another message flag but operates differently 
+
+    default to -am
+
+git push - push local changes to remote "origin" 
+
+//// also note these commands ////
+
+git log* -- look this one op for sure 
+
+git reset - hard - hard reset the branch - you can use this to swap old
+    branches and update to a older version 
+
+git stash - temp saving, francis uses this to throw away - you can use this to keep updating a 
+    working file that updates always, but is not ready to be commited.
+
+git revert 

@@ -6,10 +6,11 @@
 //resize seems to only work on windows opened with window.open - gpt suggests that window.resizeTo is often ignored by browswer
 //for secuirty reasons.
 
+//see notes.txt - NOTE 3 ************
 window.addEventListener("resize", () => {
     let ww = window.innerWidth;
     let wh = window.innerHeight;
-    if (ww < 700 || wh < 500) {
+    if (ww < 700 || wh < 500) { //need to research what this || means exactly but I think its a logical OR.
         document.body.style.overflow = "auto"; // Show scrollbars
     } else {
         document.body.style.overflow = "hidden"; // Hide scrollbars
@@ -20,18 +21,18 @@ window.addEventListener("resize", () => {
 //----------------------------------------------------------- VARIABLES
 let number_1 = document.getElementById("num1"); //whatever is inside the <p> for numberbox 1
 let number_2 = document.getElementById("num2"); //whatever is inside the <p> for numberbox 2
-let n1b = document.getElementById("n1b"); //numberbox 1 div
-let n2b = document.getElementById("n2b"); //numberbox 2 div
+let n1b = document.getElementById("n1b"); //numberbox 1 div - lights up from selector
+let n2b = document.getElementById("n2b"); //numberbox 2 div - lights up from selector
 let op_display = document.getElementById("op_display"); //whatever is inside the <p> for the operator box
 let display_screen = document.getElementById("display_screen"); //whatever is inside the <p> for the display screen
 let z_screen = document.getElementById("z_display");
 //let n1s = 0;
 //let n2s = 0;
-let getp = document.getElementById("testP"); //the dispaly <p> inside the display window
+let getp = document.getElementById("testP"); //the dispaly <p> inside the display window - green box 
 let index_screen = document.getElementById("index_display");
 let pointer = n1b; //sets default pointer to first number box
-let ri = document.getElementById("RI");
-let li = document.getElementById("LI");
+let ri = document.getElementById("RI"); //light indicator on the R - green
+let li = document.getElementById("LI"); //light indicator on the L - red
 const clr = document.getElementById("clr");
 const equal_button = document.getElementById("equal");
 const plus_button = document.getElementById("plus");
@@ -62,8 +63,32 @@ const calc_log = []; //used to store all the results from the user
 
 //----------------------------------------------------------- FUNCTIONS 
 
+//see notes.txt - NOTE 3 ************
+// i don't think this actually does anything!!
 
-console.log(typeof (index_screen));
+getp.addEventListener('resize', () => { //gpt assist with object dimensions 
+    let vw = getp.offsetWidth;
+    let vh = getp.offsetHeight;
+
+    //parentElement looks at the parent of the the variable getp, which is a div. Then we look at the dimensions through
+    //offsetW | offsetH
+    let parentWidth = getp.parentElement.offsetWidth;
+    let parentHeight = getp.parentElement.offsetHeight;
+    if (vw > parentWidth || vh > parentHeight) {
+        document.getp.style.overflow = "auto";
+    } else {
+        document.getp.style.overflow = "hidden";
+    }
+});
+// ultimately just set the overflow to auto in the css - i don't know if ^^ is necessary but a good learning experience. 
+
+
+
+
+//console.log(typeof (index_screen));
+
+
+//see notes.txt - NOTE 1 for the below info ************
 
 
 // syntax help utilizing gpt as a teaching tool 
@@ -102,6 +127,7 @@ let position; //this will always represent the current index in index_screen | a
 let temp2; //length of either number_1 or number_2
 
 function indicate() {
+    // checks where the index is - if at the beginning, the li is red, if at the very end, the ri is green
     if (parseFloat(index_screen.textContent) === 0) {
         li.style.backgroundColor = "rgb(255, 0, 0)";
         ri.style.backgroundColor = "#a2abab";
@@ -116,16 +142,16 @@ function indicate() {
 
 function index_adjust() {
     position = parseFloat(index_screen.textContent);
-    console.log("init position is: " + position);
-    console.log("index screen is: " + index_screen.textContent);
+    //console.log("init position is: " + position);
+    //console.log("index screen is: " + index_screen.textContent);
     if (pointer === n1b) {
         if (number_1.textContent === "--") {
             index_screen.textContent = "0";
         } else {
             index_screen.textContent = number_1.textContent.length;
             temp2 = number_1.textContent.length;
-            console.log("temp2 is: " + temp2);
-            console.log("position is: " + position);
+            //console.log("temp2 is: " + temp2);
+            //console.log("position is: " + position);
             //console.log("length of index = " + index_screen.length)
             if (number_1.textContent === "") {
                 number_1.textContent = "--"
@@ -143,20 +169,27 @@ function index_adjust() {
         }
         //console.log("length of index = " + index_screen.length)
     }
-    //i have this here because almost everything 
+    //checksthe index position after each addition (resetting to maximum length)
     indicate();
 };
 
 function input_numbers(button_number) { // will need to split number_1 at the indexed position, and add the number, then join 
+    let splitter = parseFloat(index_screen.textContent);
     if (pointer === n1b) {
         if (number_1.textContent === "--") {
             number_1.textContent = button_number;
             index_adjust();
         } else {
             //number_1.textContent += button_number;
-            if (index_screen.textContent < number_1.textContent.length) { //needs -1 since counter starts at 1 for first parseFloat
-                let newstr = number_1.textContent.slice(0, parseFloat(index_screen.textContent)) + button_number + number_1.textContent.slice(parseFloat(index_screen.textContent)); //** */
-                number_1.textContent = newstr.join();
+            if (index_screen.textContent < number_1.textContent.length) {
+                //console.log("CL current place: " + index_screen.textContent + " || type is: " + typeof (index_screen.textContent));
+                //console.log("CL maxlen: " + number_1.textContent.length + " || type is: " + typeof (number_1.textContent.length));
+
+                //see notes.txt - NOTE 2 ************
+                //let newstr = number_1.textContent.split("");
+                let newstr = number_1.textContent.slice(0, splitter).concat(button_number, number_1.textContent.slice(splitter));
+                number_1.textContent = newstr; // why no join?
+
             } else {
                 number_1.textContent += button_number;
             }
@@ -166,8 +199,17 @@ function input_numbers(button_number) { // will need to split number_1 at the in
         if (number_2.textContent === "--") {
             number_2.textContent = button_number;
             index_adjust();
-        } else {
-            number_2.textContent += button_number;
+        } else { //this uses split... but actually slice is on number_2.textContent - so its manipulating a string. No join needed 
+            if (index_screen.textContent < number_2.textContent.length) {
+                let newstr = number_2.textContent.split("");
+                console.log("newstr after split is: " + newstr);
+                newstr = number_2.textContent.slice(0, splitter).concat(button_number, number_2.textContent.slice(splitter)); // no join
+                console.log("newstr after splitter with concat is: " + newstr);
+                number_2.textContent = newstr;
+
+            } else {
+                number_2.textContent += button_number;
+            }
             index_adjust();
         }
     }
@@ -191,9 +233,10 @@ function selector() {
     }
 }
 
-function del() {
+function del() { //this works on an array from split - continues as an array from newstr.slice
     let splitter = parseFloat(index_screen.textContent);
     if (pointer === n1b) {
+        //see notes.txt - NOTE 2 ************
         let newstr = number_1.textContent.split("");
         newstr = newstr.slice(0, splitter - 1).concat(newstr.slice(splitter)).join('');
         console.log(newstr);
@@ -201,8 +244,11 @@ function del() {
         index_adjust();
     } else if (pointer === n2b) {
         let newstr = number_2.textContent.split("");
-        newstr = newstr.slice(0, splitter - 1).concat(newstr.slice(splitter)).join('');
-        console.log(newstr);
+        console.log("newstr after split is: " + newstr)
+        newstr = newstr.slice(0, splitter - 1).concat(newstr.slice(splitter));//.join('');
+        console.log("newstr after splitter with concat is: " + newstr);
+        newstr = newstr.join('');
+        console.log("newstr after join is: " + newstr);
         number_2.textContent = newstr;
         index_adjust();
     }

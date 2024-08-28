@@ -1,51 +1,61 @@
-notes.txt
+I left a lot of code in this for learning purposes - it is messier but can be referenced for some excellent insights that I 
+earned while buildint this project.
 
-GIT
-** do not use the term database
+NOTE 1  - the original design used user input for number box 1 and 2.
+some of the commented code is in reference to this - namely anything that ends in .value. This retrieves input from an object
+where as .textContent retrieves just the text from an object that a user can't interact with (like a <p>  or <span> tag).
 
-Git keeps track of ANY FILE through version control.
+the isNaN function evaluates if the argument is a number object - this was relevant when a user could input something that
+was NOT a number. This was in place to check if that was the case and then convert the non number to a 0. This became 
+unneccesary as the user input went away.
 
-COMMANDS -- 
+--------------------------------------------------- break ---------------------------------------------------
 
-git status - gives details about the current repo and branch
-    any changes / differences from the working directory to the last commit
+NOTE 2 - the use of newstr vs referencing number_X.textContent:
+in input_numbers and del functions, I use a similar strategy to effect the string at a specific index (called splitter).
+in the del function, I am actually manipulating arrays, whereas in the input_numbers function, I am manipulating strings.
 
-git pull - pulls all of the code from the remote "origin"
-    origin is the source of truth for the code. Anywhere that isn't you personal machine
+*** I left it both ways to illustrate the difference - important to understand, array manipulation is more complex but has a 
+wider range of uses. Say you want to filter out specific letters or do more complicated types of manipulation, working in 
+an array offers this opportunity. String manipulation is a lot simplier and there are several string specific types of 
+methods that exist such as substring, splice, toUpperCase, etc. ***
 
-(can also use git merge - but pull includes a merge automatically)
+the reason there are differences between the two functions is because of what I call the slice method on:
 
-git branch - lists all branches you've pulled onto your machine 
+in the input_numbers function, I originally defined newstr as number_X.textContent.split(""); 
+Split here takes the string and turns it into an array. This is the same in the del function but the difference is what 
+happens next:
 
-git checkout <branch name> - checks out the specified branch 
-    replaces your current version after saves - will update everything else
-    think "checkout" like library 
+starting with the del function - my next line reassigns newstr to:
+        newstr = newstr.slice(0, splitter - 1).concat(newstr.slice(splitter)).join('');
+notice how slice is applied to newstr, which was previously turned into an ARRAY by the split method.
 
-git checkout -b <branch name> - this flag creates a new branch 
+in the input_numbers function,  my second line is actually:
+        newstr = number_2.textContent.slice(0, splitter).concat(button_number, number_2.textContent.slice(splitter));
+notice how slice is applied to number_2.textContent - which is a string
 
-git add -A - adds all untracked files to be tracked by git -
-    starts and stops tracking new and removed files 
+this is the reason that input_numbers function does NOT need the join method - it is all a string already. 
 
-    git doesn't track anything by default - you have to specify what to track. 
-    It will keep tracking everything until specified otherwise.
-    This is why we use -A - this method will automatically stop tracking deleted files
-    ** anytime you add or delete files, run this call
+--------------------------------------------------- break ---------------------------------------------------
 
-git commit -am 'message' - commit the changes /  create a change record and (a)dd a (m)essage to changes
-    -m is another message flag but operates differently 
+NOTE 3 - resize:
 
-    default to -am
+The first function is a window object event listener that watches for window resize. If the window falls below a certain 
+height or width, it will make a scroll bar visible to handle overflow. This idea came from GPT - the original goal was to
+resize the window to a certain dimension if either H or W fell below a certain point - but research indicated that resize
+tended to be blocked by the browser unless the window was opened new from the code itself (window.open() I believe).
 
-git push - push local changes to remote "origin" 
+I think this blockage extends beyond resize and seems to limit certain code interactions with the browser for security 
+purposes, but I need to do more research beyond the scope of this project.
 
-//// also note these commands ////
+Instead, I landed at the solution in the code - this window.object can use innerHeight / innerWidth as they are objects
+of the window itself. 
 
-git log* -- look this one op for sure 
+getp -  I try a similar thing with the result display - but I learned that there are different methods to use since this 
+is not a window object (therefor innerHeight / innerWidth won't work.) In researching + GPT, I learned about 
+[ offsetWidth | offsetHeight ] and [ clientWidth | clientHeight ]. 
 
-git reset - hard - hard reset the branch - you can use this to swap old
-    branches and update to a older version 
+The main differences between these are the size of an object including content, padding, border, and scrollbars.
+offset accounts for all of this and client accounts for conent and padding ONLY.
 
-git stash - temp saving, francis uses this to throw away - you can use this to keep updating a 
-    working file that updates always, but is not ready to be commited.
-
-git revert 
+--------------------------------------------------- break ---------------------------------------------------
