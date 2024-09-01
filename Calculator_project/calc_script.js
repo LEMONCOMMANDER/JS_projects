@@ -58,7 +58,7 @@ const R = document.getElementById("R");
 
 
 
-
+//
 const calc_log = []; //used to store all the results from the user
 
 //----------------------------------------------------------- FUNCTIONS 
