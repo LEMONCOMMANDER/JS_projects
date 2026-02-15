@@ -1,8 +1,2 @@
-# JS_projects
-
-
-> This is where all my Javascript projects will live - take a look
-
-> Projects include:
-
-- 1. calculator project
+# First project!
+a little css, html, javascript calculator. This is my "HELLO WORLD" repo!
